@@ -3,6 +3,8 @@ Presidio collects options chains and Greeks data from Yahoo Finance and packages
 - [Technologies Used](#technologies) - Frameworks and languages used
 - [Installation](#installation) - How to install Presidio
 - [Usage](#usage) - How to use Presidio
+- [Tests](#tests) - How to test Presidio before making changes to the application and data tier
+- [Contributing](#contributing) - How to contribute in this project
 - [License](#license) - MIT License  
 
 https://github.com/Devbrianhuynh/presidio/assets/145720981/48de2453-1861-4c13-b3f4-3979608edb18
