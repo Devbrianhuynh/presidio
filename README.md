@@ -78,7 +78,9 @@ To use Presidio, you will need:
     cd presidio
     ```
 4. Open index.html in a browser
+    ```txt
     Open the index.html file in your preferred web browser
+    ```
 
 <a name='usage'></a>
 ## Usage
@@ -136,7 +138,7 @@ To use Presidio, you will need:
 
 <a name='contributing'></a>
 ## Contributing
-**IMPORTANT**: Everyone is welcome and encouraged to criticize and laugh at my project. It is my duty to listen to these criticisms and think about how I can reduce these in the future. Please, if you have something to say, say it. It will NOT hurt my feelings! I am just getting started in full-stack development, so of course Presidio wouldn't be something that is "life changing" 
+**IMPORTANT**: Everyone is welcome and encouraged to criticize and laugh at my project. It is my duty to listen to these criticisms and think about how I can reduce these in the future. Please, if you have something to say, say it. It will NOT hurt my feelings!
 
 <a name='license'></a>
 ## License
