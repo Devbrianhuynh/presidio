@@ -84,8 +84,8 @@ class Options_Chain:
 
         conn = psycopg2.connect(
             dbname = 'options_research',
-            user = #your username,
-            password = #your password,
+            user = 'postgres',
+            password = 'postgressoftware',
             host = 'localhost',
             port = '5432'
         )
@@ -93,8 +93,33 @@ class Options_Chain:
         cur = conn.cursor()
 
         insert_postgresql = """
+            CREATE TABLE IF NOT EXISTS call_options_greeks (
+                id INTEGER AUTO_INCREMENT PRIMARY KEY,
+                call_options_chain_id INTEGER,
+                contract_name TEXT,
+                delta REAL,
+                gamma REAL,
+                theta REAL,
+                vega REAL,
+                rho REAL,
+                day_high MONEY,
+                day_low MONEY,
+                prev_close MONEY,
+                `open` MONEY,
+                tick INTEGER,
+                bid_size INTEGER,
+                ask_size INTEGER,
+                contract_high REAL,
+                contract_low REAL,
+                market TEXT,
+                days_until_expiration INTEGER,
+                volume INTEGER,
+                open_interest INTEGER,
+                implied_volatility REAL
+            );
+
             INSERT INTO call_options_greeks (id, call_options_chain_id, contract_name, delta, gamma, theta, vega, rho, day_high, day_low, prev_close, open, tick, bid_size, ask_size, contract_high, contract_low, market, days_until_expiration, volume, open_interest, implied_volatility)
-            VALUES (%(id)s, %(call_options_chain_id)s, %(contract_name)s, %(delta)s, %(gamma)s, %(theta)s, %(vega)s, %(rho)s, %(day_high)s, %(day_low)s, %(prev_close)s, %(open)s, %(tick)s, %(bid_size)s, %(ask_size)s, %(contract_high)s, %(contract_low)s, %(market)s, %(days_until_expiration)s, %(volume)s, %(open_interest)s, %(implied_volatility)s)
+            VALUES (%(id)s, %(call_options_chain_id)s, %(contract_name)s, %(delta)s, %(gamma)s, %(theta)s, %(vega)s, %(rho)s, %(day_high)s, %(day_low)s, %(prev_close)s, %(open)s, %(tick)s, %(bid_size)s, %(ask_size)s, %(contract_high)s, %(contract_low)s, %(market)s, %(days_until_expiration)s, %(volume)s, %(open_interest)s, %(implied_volatility)s);
             """
         
         day_high_patch = 0 if extra_call.iloc[2] == 'N/A' else float(extra_call.iloc[2])
@@ -192,17 +217,42 @@ class Options_Chain:
 
         conn = psycopg2.connect(
             dbname = 'options_research',
-            user = #your username,
-            password = #your password,
-            host = 'localhost',
-            port = '5432'
+            user='postgres',
+            password='postgressoftware',
+            host='localhost',
+            port='5432'
         )
 
         cur = conn.cursor()
 
         insert_postgresql = """ 
+            CREATE TABLE IF NOT EXISTS put_options_greeks (
+                id INTEGER AUTO_INCREMENT PRIMARY KEY,
+                call_options_chain_id INTEGER,
+                contract_name TEXT,
+                delta REAL,
+                gamma REAL,
+                theta REAL,
+                vega REAL,
+                rho REAL,
+                day_high MONEY,
+                day_low MONEY,
+                prev_close MONEY,
+                `open` MONEY,
+                tick INTEGER,
+                bid_size INTEGER,
+                ask_size INTEGER,
+                contract_high REAL,
+                contract_low REAL,
+                market TEXT,
+                days_until_expiration INTEGER,
+                volume INTEGER,
+                open_interest INTEGER,
+                implied_volatility REAL
+            );
+
             INSERT INTO put_options_greeks (id, put_options_chain_id, contract_name, delta, gamma, theta, vega, rho, day_high, day_low, prev_close, open, tick, bid_size, ask_size, contract_high, contract_low, market, days_until_expiration, volume, open_interest, implied_volatility)
-            VALUES (%(put_options_chain_id)s, %(put_options_chain_id)s, %(contract_name)s, %(delta)s, %(gamma)s, %(theta)s, %(vega)s, %(rho)s, %(day_high)s, %(day_low)s, %(prev_close)s, %(open)s, %(tick)s, %(bid_size)s, %(ask_size)s, %(contract_high)s, %(contract_low)s, %(market)s, %(days_until_expiration)s, %(volume)s, %(open_interest)s, %(implied_volatility)s)
+            VALUES (%(put_options_chain_id)s, %(put_options_chain_id)s, %(contract_name)s, %(delta)s, %(gamma)s, %(theta)s, %(vega)s, %(rho)s, %(day_high)s, %(day_low)s, %(prev_close)s, %(open)s, %(tick)s, %(bid_size)s, %(ask_size)s, %(contract_high)s, %(contract_low)s, %(market)s, %(days_until_expiration)s, %(volume)s, %(open_interest)s, %(implied_volatility)s);
             """
         
         day_high_patch = 0 if extra_call.iloc[2] == 'N/A' else float(extra_call.iloc[2])
@@ -256,11 +306,11 @@ class Options_Chain:
             print(f'Researching row {i} on {symbol} at {date}')
 
             conn = psycopg2.connect(
-                dbname = 'options_research',
-                user = #your username,
-                password = #your password,
-                host = 'localhost',
-                port = '5432'
+                dbname='options_research',
+                user='postgres',
+                password='postgressoftware',
+                host='localhost',
+                port='5432'
             )
 
             cur = conn.cursor()
@@ -269,6 +319,23 @@ class Options_Chain:
 
             if bm == 'call':
                 insert_postgresql = """
+                    CREATE TABLE IF NOT EXISTS call_options_chain (
+                        id SERIAL PRIMARY KEY,
+                        symbol TEXT,
+                        contract_name TEXT,
+                        bid MONEY,
+                        ask MONEY,
+                        mid MONEY,
+                        premium MONEY,
+                        change INTEGER,
+                        volume INTEGER,
+                        open_interest INTEGER,
+                        implied_volatility REAL,
+                        expiry_date DATE,
+                        strike MONEY,
+                        added_time DATE
+                    );
+
                     INSERT INTO call_options_chain (id, symbol, contract_name, bid, ask, mid, premium, change, volume, open_interest, implied_volatility, expiry_date, strike, added_time)
                     VALUES (%(options_chain_id)s, 
                             %(contract_symbol)s, 
@@ -288,6 +355,23 @@ class Options_Chain:
                 
             elif bm == 'put':
                 insert_postgresql = """
+                    CREATE TABLE IF NOT EXISTS put_options_chain (
+                        id SERIAL PRIMARY KEY,
+                        symbol TEXT,
+                        contract_name TEXT,
+                        bid MONEY,
+                        ask MONEY,
+                        mid MONEY,
+                        premium MONEY,
+                        change INTEGER,
+                        volume INTEGER,
+                        open_interest INTEGER,
+                        implied_volatility REAL,
+                        expiry_date DATE,
+                        strike MONEY,
+                        added_time DATE
+                    );
+
                     INSERT INTO put_options_chain (id, symbol, contract_name, bid, ask, mid, premium, change, volume, open_interest, implied_volatility, expiry_date, strike, added_time)
                     VALUES (%(options_chain_id)s, 
                             %(contract_symbol)s, 
@@ -349,11 +433,11 @@ class Options_Chain:
     # Everytime a user requests new information, we reset the options chains, greeks, and suggested strategies
     def truncate_database(self, buying_method):
         conn = psycopg2.connect(
-            dbname = 'options_research',
-            user = #your username,
-            password = #your password,
-            host = 'localhost',
-            port = '5432'
+            dbname='options_research',
+            user='postgres',
+            password='postgressoftware',
+            host='localhost',
+            port='5432'
         )
 
         cur = conn.cursor()
@@ -396,8 +480,8 @@ class Options_Chain:
                 ADD CONSTRAINT put_options_strategies_put_options_greeks_id_fkey FOREIGN KEY(put_options_greeks_id) REFERENCES put_options_greeks(id);
                 """
 
-        # Also drop the call_and_put_options_chain table because in options_application.py, if the user reruns the program
-        # we can't CREATE TABLE call_and_put_options_chain when call_and_put_options_chain already exists
+        # Drop the call_and_put_options_chain table because in options_application.py, if the user reruns the program because
+        # we can't CREATE TABLE and TRUNCATE call_and_put_options_chain when call_and_put_options_chain already exists
         elif buying_method == 'all':
             truncate_dataset = """
                 ALTER TABLE call_options_greeks
@@ -448,11 +532,11 @@ class Options_Chain:
     # An index is only needed when we connect the call and put options chain together (see options_application.py)
     def add_index(self):
         conn = psycopg2.connect(
-            dbname = 'options_research',
-            user = #your username,
-            password = #your password,
-            host = 'localhost',
-            port = '5432'
+            dbname='options_research',
+            user='postgres',
+            password='postgressoftware',
+            host='localhost',
+            port='5432'
         )
 
         cur = conn.cursor()
@@ -472,11 +556,11 @@ class Options_Chain:
     # Remove the index (if exists) from the call_and_put_options_chain table
     def remove_index(self):
         conn = psycopg2.connect(
-            dbname = 'options_research',
-            user = #your username,
-            password = #your password,
-            host = 'localhost',
-            port = '5432'
+            dbname='options_research',
+            user='postgres',
+            password='postgressoftware',
+            host='localhost',
+            port='5432'
         )
 
         cur = conn.cursor()
