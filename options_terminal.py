@@ -84,8 +84,8 @@ class Options_Chain:
 
         conn = psycopg2.connect(
             dbname = 'options_research',
-            user = 'postgres',
-            password = 'postgressoftware',
+            user = #your username,
+            password = #your password,
             host = 'localhost',
             port = '5432'
         )
@@ -192,10 +192,10 @@ class Options_Chain:
 
         conn = psycopg2.connect(
             dbname = 'options_research',
-            user='postgres',
-            password='postgressoftware',
-            host='localhost',
-            port='5432'
+            user = #your username,
+            password = #your password,
+            host = 'localhost',
+            port = '5432'
         )
 
         cur = conn.cursor()
@@ -256,11 +256,11 @@ class Options_Chain:
             print(f'Researching row {i} on {symbol} at {date}')
 
             conn = psycopg2.connect(
-                dbname='options_research',
-                user='postgres',
-                password='postgressoftware',
-                host='localhost',
-                port='5432'
+                dbname = 'options_research',
+                user = #your username,
+                password = #your password,
+                host = 'localhost',
+                port = '5432'
             )
 
             cur = conn.cursor()
@@ -349,11 +349,11 @@ class Options_Chain:
     # Everytime a user requests new information, we reset the options chains, greeks, and suggested strategies
     def truncate_database(self, buying_method):
         conn = psycopg2.connect(
-            dbname='options_research',
-            user='postgres',
-            password='postgressoftware',
-            host='localhost',
-            port='5432'
+            dbname = 'options_research',
+            user = #your username,
+            password = #your password,
+            host = 'localhost',
+            port = '5432'
         )
 
         cur = conn.cursor()
@@ -448,11 +448,11 @@ class Options_Chain:
     # An index is only needed when we connect the call and put options chain together (see options_application.py)
     def add_index(self):
         conn = psycopg2.connect(
-            dbname='options_research',
-            user='postgres',
-            password='postgressoftware',
-            host='localhost',
-            port='5432'
+            dbname = 'options_research',
+            user = #your username,
+            password = #your password,
+            host = 'localhost',
+            port = '5432'
         )
 
         cur = conn.cursor()
@@ -472,11 +472,11 @@ class Options_Chain:
     # Remove the index (if exists) from the call_and_put_options_chain table
     def remove_index(self):
         conn = psycopg2.connect(
-            dbname='options_research',
-            user='postgres',
-            password='postgressoftware',
-            host='localhost',
-            port='5432'
+            dbname = 'options_research',
+            user = #your username,
+            password = #your password,
+            host = 'localhost',
+            port = '5432'
         )
 
         cur = conn.cursor()
