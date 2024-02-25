@@ -24,6 +24,8 @@ https://github.com/Devbrianhuynh/presidio/assets/145720981/48de2453-1861-4c13-b3
 ## Built With
 - ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) - Version 3.0.0
   - Connects the Python program to HTML
+- ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) - Version 16.1
+  - The program's database that stores information coming from the API
 - ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) - Version 3.12.2
   - Logic for gathering and handling options data coming from the API
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -39,6 +41,7 @@ https://github.com/Devbrianhuynh/presidio/assets/145720981/48de2453-1861-4c13-b3
 To use Presidio, you will need:
 - Flask 3.0.0 or later
 - Python 3.11.2 or later
+- PostgreSQL 16.1 or later
 - yahoo_fin 0.8.9.1 or later
 - conda (Anaconda) 23.7.4 or later (optional; however, if the software fails to function, download Anaconda)
 - requests_html
@@ -77,7 +80,17 @@ To use Presidio, you will need:
     # Go into the repository
     cd presidio
     ```
-4. Open index.html in a browser
+4. Ctrl + F, type ".connect", and type in your PostgreSQL information
+   ```python
+   conn = psycopg2.connect(
+            dbname = 'options_research',
+            user = #your username,
+            password = #your password,
+            host = 'localhost',
+            port = '5432'
+        )
+   ```
+5. Open index.html in a browser
     ```txt
     Open the index.html file in your preferred web browser
     ```
