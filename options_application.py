@@ -37,8 +37,8 @@ class Options_Application:
     def extract_options_from_dataset(self, buying_method):
         conn = psycopg2.connect(
             dbname = 'options_research',
-            user = 'postgres',
-            password = 'postgressoftware',
+            user = #your username,
+            password = #your password,
             host = 'localhost',
             port = '5432'
         )
@@ -136,8 +136,8 @@ class Options_Application:
     def extract_greeks_from_dataset(self, buying_method):
         conn = psycopg2.connect(
             dbname = 'options_research',
-            user = 'postgres',
-            password = 'postgressoftware',
+            user = #your username,
+            password = #your password,
             host = 'localhost',
             port = '5432'
         )
