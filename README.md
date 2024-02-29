@@ -151,7 +151,7 @@ To use Presidio, you will need:
 
 <a name='contributing'></a>
 ## Contributing
-**IMPORTANT**: Everyone is welcome and encouraged to criticize and laugh at my project. It is my duty to listen to these criticisms and think about how I can reduce these in the future. Please, if you have something to say, say it. It will NOT hurt my feelings!
+Feel free to contribute to this repository and add new features
 
 <a name='license'></a>
 ## License
