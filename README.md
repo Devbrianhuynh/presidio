@@ -34,6 +34,8 @@ https://github.com/Devbrianhuynh/presidio/assets/145720981/48de2453-1861-4c13-b3
   - The main structure of the web page
 - ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
   - Styles to define the appearance of the web page
+- ![image](https://github.com/Devbrianhuynh/presidio/assets/145720981/bd7d812e-af24-4014-990a-950ee9c296ba)
+  - Used to give advice on code structure, redability, and cleanliness
 
 <a name='installation'></a>
 ## Installation
